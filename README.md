@@ -1,8 +1,6 @@
 # alertmanager-dingtalk-hook :lemon: :tangerine: :cherries: :cake: :grapes: :watermelon: :strawberry: :corn: :peach:
 AlertManager 钉钉报警简单服务示例
 
-![alertmanager dingtalk message demo](https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/dingtalk-hook-demo.png)
-
 ## 运行
 ### 使用`Docker`运行
 ```shell
@@ -32,7 +30,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: dingtalk-hook
-  namespace: kube-ops
+  namespace: uk8s-monitor
 spec:
   selector:
     matchLabels:
@@ -44,7 +42,7 @@ spec:
     spec:
       containers:
       - name: dingtalk-hook
-        image: cnych/alertmanager-dingtalk-hook:v0.3.6
+        image: uhub.service.ucloud.cn/davidertest/alertmanager-dingtalk-hook:v1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5000
@@ -77,7 +75,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: dingtalk-hook
-  namespace: kube-ops
+  namespace: uk8s-monitor
 spec:
   selector:
     app: dingtalk-hook
