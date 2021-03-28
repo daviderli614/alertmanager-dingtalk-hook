@@ -6,6 +6,7 @@ AlertManager 钉钉报警简单服务示例
 ```shell
 $ docker run -p 5000:5000 --name -e ROBOT_TOKEN=<钉钉机器人TOKEN> -e ROBOT_SECRET=<钉钉机器人安全SECRET> -e LOG_LEVEL=debug -e PROME_URL=prometheus.local dingtalk-hook -d cnych/alertmanager-dingtalk-hook:v0.3.5
 ```
+
 ![image](https://user-images.githubusercontent.com/64472425/112759125-2f329a80-9024-11eb-910e-5a462ff169a3.png)
 
 环境变量配置：
@@ -21,6 +22,10 @@ $ docker run -p 5000:5000 --name -e ROBOT_TOKEN=<钉钉机器人TOKEN> -e ROBOT_
 ```shell
 $ kubectl create secret generic dingtalk-secret --from-literal=token=<钉钉群聊的机器人TOKEN> --from-literal=secret=<钉钉群聊机器人的SECRET> -n uk8s-monitor
 secret "dingtalk-secret" created
+```
+```shell
+示例：
+$ kubectl create secret generic dingtalk-secret --from-literal=token=xxx --from-literal=secret=testdingding -n uk8s-monitor
 ```
 
 然后定义`Deployment`和`Service`资源对象：(dingtalk-hook.yaml)
