@@ -105,7 +105,7 @@ dingtalk-hook-c4fcd8cd6-6r2b6   1/1       Running     0          45m
 receivers:
 - name: 'webhook'
   webhook_configs:
-  - url: 'http://dingtalk-hook.kube-ops.svc.cluster.local:5000'
+  - url: 'http://dingtalk-hook.uk8s-monitor.svc.cluster.local:5000'
     send_resolved: true
 ```
 
