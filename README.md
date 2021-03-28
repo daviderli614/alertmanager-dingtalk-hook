@@ -1,4 +1,4 @@
-# alertmanager-dingtalk-hook :lemon: :tangerine: :cherries: :cake: :grapes: :watermelon: :strawberry: :corn: :peach:
+# alertmanager-dingtalk-hook
 AlertManager 钉钉报警简单服务示例
 
 ## 运行
