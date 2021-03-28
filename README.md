@@ -6,6 +6,7 @@ AlertManager 钉钉报警简单服务示例
 ```shell
 $ docker run -p 5000:5000 --name -e ROBOT_TOKEN=<钉钉机器人TOKEN> -e ROBOT_SECRET=<钉钉机器人安全SECRET> -e LOG_LEVEL=debug -e PROME_URL=prometheus.local dingtalk-hook -d cnych/alertmanager-dingtalk-hook:v0.3.5
 ```
+![image](https://user-images.githubusercontent.com/64472425/112759125-2f329a80-9024-11eb-910e-5a462ff169a3.png)
 
 环境变量配置：
 
@@ -14,13 +15,11 @@ $ docker run -p 5000:5000 --name -e ROBOT_TOKEN=<钉钉机器人TOKEN> -e ROBOT_
 * LOG_LEVEL：日志级别，设置成 `debug` 可以看到 AlertManager WebHook 发送的数据，方便调试使用，不需调试可以不设置该环境变量
 * ROBOT_SECRET：为钉钉机器人的安全设置密钥，机器人安全设置页面，加签一栏下面显示的 SEC 开头的字符串
 
-![dingtalk secret](https://dingtalkdoc.oss-cn-beijing.aliyuncs.com/images/0.0.184/1572261283991-f8e35f4d-6997-4a02-9704-843ee8f97464.png)
-
 
 ### 在`Kubernetes`集群中运行
 第一步建议将钉钉机器人TOKEN创建成`Secret`资源对象：
 ```shell
-$ kubectl create secret generic dingtalk-secret --from-literal=token=<钉钉群聊的机器人TOKEN> --from-literal=secret=<钉钉群聊机器人的SECRET> -n kube-ops
+$ kubectl create secret generic dingtalk-secret --from-literal=token=<钉钉群聊的机器人TOKEN> --from-literal=secret=<钉钉群聊机器人的SECRET> -n uk8s-monitor
 secret "dingtalk-secret" created
 ```
 
@@ -90,7 +89,7 @@ spec:
 $ kubectl create -f dingtalk-hook.yaml
 deployment.apps "dingtalk-hook" created
 service "dingtalk-hook" created
-$ kubectl get pods -n kube-ops
+$ kubectl get pods -n uk8s-monitor
 NAME                            READY     STATUS      RESTARTS   AGE
 dingtalk-hook-c4fcd8cd6-6r2b6   1/1       Running     0          45m
 ......
